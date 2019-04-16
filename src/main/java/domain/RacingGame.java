@@ -105,7 +105,7 @@ public class RacingGame {
      * */
     int max = 0;  //최대 위치 저장 변수
     int idx = 0;  //이긴 차량의 숫자 저장 변수
-    Car[] winnerList = new Car[10];
+    List<String> winnerList = new ArrayList<String>();
     for (int i = 0; i < carNum; i++) {
       if (carList.get(i).getCarPosition() > max) {
         /* 최대 위치를 max 변수에 저장 */
@@ -115,19 +115,15 @@ public class RacingGame {
     for (int i = 0; i < carNum; i++) {
       if (carList.get(i).getCarPosition() == max) {
         /*이긴 차량의 목록을 winnerList에 저장*/
-        winnerList[idx++] = carList.get(i);
+        winnerList.add(carList.get(i).getCarName());
       }
     }
     PrintWinCar(winnerList, idx);
   }
 
-  public static void PrintWinCar(Car[] winnerList, int winNum) {
-    //String result = String.join(",)
-    for (int i = 0; i < winNum - 1; i++) {
-      System.out.print(winnerList[i].getCarName() + ", ");
-    }
-    System.out.print(winnerList[winNum - 1].getCarName());
-    System.out.println("가 최종 우승했습니다.");
+  public static void PrintWinCar(List<String> winnerList, int winNum) {
+    String result = String.join(",", winnerList);
+    System.out.println(result + "가 최종 우승했습니다.");
   }
 
   public static void main(String args[]) {
